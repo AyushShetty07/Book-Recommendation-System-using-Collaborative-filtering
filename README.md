@@ -33,8 +33,7 @@ A web-based **Book Recommendation System** built using **Flask**. This system us
 - Open your browser and navigate to `http://127.0.0.1:5000/` to access the book recommendation system.
 - Search for books and receive personalized recommendations based on collaborative filtering.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 ## Acknowledgements
 - Flask for backend development.
