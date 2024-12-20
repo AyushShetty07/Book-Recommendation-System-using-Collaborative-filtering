@@ -1,0 +1,421 @@
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Book Recommender System</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    &lt;!&ndash; Latest compiled and minified CSS &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<style>&ndash;&gt;-->
+<!--&lt;!&ndash;    .text-white{&ndash;&gt;-->
+<!--&lt;!&ndash;        color:white&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+<!--&lt;!&ndash;</style>&ndash;&gt;-->
+<!--&lt;!&ndash;<body style="background-color:black">&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <nav class="navbar" style="background-color:#00a65a">&ndash;&gt;-->
+<!--&lt;!&ndash;        <a class="navbar-brand">My Book recommender</a>&ndash;&gt;-->
+<!--&lt;!&ndash;        <ul class="nav navbar-nav">&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a href="/">Home</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a href="/recommend">Recommend</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a>Contact</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;    </nav>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="row">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="col-md-12">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h1 class="text-white" style="font-size:50px">Recommend Books</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;                <form action="/recommend_books" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input name="user_input" type="text" class="form-control"><br>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <input type="submit" class="btn btn-lg btn-warning">&ndash;&gt;-->
+<!--&lt;!&ndash;                </form>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            {% if data %}&ndash;&gt;-->
+
+<!--&lt;!&ndash;             {% for i in data %}&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="col-md-3" style="margin-top:50px">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <img class="card-img-top" src="{{i[2]}}">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <p class="text-white">{{i[0]}}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <h4 class="text-white">{{i[1]}}</h4>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;             {% endfor %}&ndash;&gt;-->
+
+<!--&lt;!&ndash;            {% endif %}&ndash;&gt;-->
+
+
+
+
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;    </div>&ndash;&gt;-->
+
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta name="viewport" content="width=device-width, initial-scale=1.0">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Recommend Books</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">&ndash;&gt;-->
+<!--&lt;!&ndash;    <style>&ndash;&gt;-->
+<!--&lt;!&ndash;        body {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #2d2d2d;&ndash;&gt;-->
+<!--&lt;!&ndash;            color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .container {&ndash;&gt;-->
+<!--&lt;!&ndash;            margin-top: 50px;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .card {&ndash;&gt;-->
+<!--&lt;!&ndash;            background-color: #333;&ndash;&gt;-->
+<!--&lt;!&ndash;            border: none;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;        .card-body {&ndash;&gt;-->
+<!--&lt;!&ndash;            color: white;&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+<!--&lt;!&ndash;    </style>&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<div class="container">&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1 class="display-4">Find Your Next Favorite Book</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;    <form action="/recommend_books" method="post">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="form-group">&ndash;&gt;-->
+<!--&lt;!&ndash;            <input type="text" class="form-control" name="user_input" placeholder="Enter approximate book title" required>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <button type="submit" class="btn btn-success">Get Recommendations</button>&ndash;&gt;-->
+<!--&lt;!&ndash;    </form>&ndash;&gt;-->
+
+<!--&lt;!&ndash;    <div class="row mt-5">&ndash;&gt;-->
+<!--&lt;!&ndash;        {% if message %}&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="col-md-12">&ndash;&gt;-->
+<!--&lt;!&ndash;            <p>{{ message }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        {% endif %}&ndash;&gt;-->
+
+<!--&lt;!&ndash;        {% for item in data %}&ndash;&gt;-->
+<!--&lt;!&ndash;        <div class="col-md-3">&ndash;&gt;-->
+<!--&lt;!&ndash;            <div class="card">&ndash;&gt;-->
+<!--&lt;!&ndash;                <img class="card-img-top" src="{{ item[2] }}" alt="Book Cover">&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="card-body">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <h5 class="card-title">{{ item[0] }}</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <p class="card-text">Author: {{ item[1] }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        {% endfor %}&ndash;&gt;-->
+<!--&lt;!&ndash;    </div&ndash;&gt;-->
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Recommend Books</title>-->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+<!--    <style>-->
+<!--        body {-->
+<!--            background-image: url('https://images.unsplash.com/photo-1512820790803-83ca734da794'); /* Background image */-->
+<!--            background-size: cover;-->
+<!--            background-position: center;-->
+<!--            background-repeat: no-repeat;-->
+<!--            color: white;-->
+<!--            min-height: 100vh; /* Ensure the body takes full height */-->
+<!--        }-->
+
+<!--        /* Navbar */-->
+<!--        .navbar {-->
+<!--            background-color: #000000;-->
+<!--            transition: background-color 0.3s ease;-->
+<!--        }-->
+
+<!--        .navbar-nav {-->
+<!--            margin: 0 auto; /* Centering the navbar items */-->
+<!--        }-->
+
+<!--        .navbar-nav .nav-item {-->
+<!--            padding: 0 15px;-->
+<!--        }-->
+
+
+<!--        .navbar-nav .nav-link {-->
+<!--            font-size: 1.2rem;-->
+<!--            color: white !important;-->
+<!--            transition: color 0.3s ease;-->
+<!--        }-->
+<!--        .navbar-nav .nav-link:hover {-->
+<!--            color: #FFD700 !important; /* Gold color on hover */-->
+<!--        }-->
+
+<!--        .container {-->
+<!--            margin-top: 50px;-->
+<!--            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better text visibility */-->
+<!--            padding: 30px;-->
+<!--            border-radius: 10px;-->
+<!--        }-->
+
+<!--        h1 {-->
+<!--            text-align: center;-->
+<!--            font-size: 2.5rem;-->
+<!--            margin-bottom: 20px;-->
+<!--            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);-->
+<!--        }-->
+
+<!--        .form-control {-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            background-color: rgba(255, 255, 255, 0.8);-->
+<!--            color: #333;-->
+<!--        }-->
+
+<!--        .btn-success {-->
+<!--            border-radius: 5px;-->
+<!--        }-->
+
+<!--        .btn-home {-->
+<!--            margin-top: 20px;-->
+<!--            width: 100%; /* Full-width button */-->
+<!--            background-color: #007bff; /* Bootstrap primary color */-->
+<!--        }-->
+
+<!--        .card {-->
+<!--            background-color: rgba(0, 0, 0, 0.8);-->
+<!--            border: none;-->
+<!--            transition: transform 0.3s ease, box-shadow 0.3s ease;-->
+<!--        }-->
+
+<!--        .card:hover {-->
+<!--            transform: translateY(-5px);-->
+<!--            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);-->
+<!--        }-->
+
+<!--        .card-img-top {-->
+<!--            transition: opacity 0.3s ease;-->
+<!--        }-->
+
+<!--        .card:hover .card-img-top {-->
+<!--            opacity: 0.9;-->
+<!--        }-->
+
+<!--        .card-body {-->
+<!--            text-align: center;-->
+<!--            color: white;-->
+<!--        }-->
+
+<!--        footer {-->
+<!--            text-align: center;-->
+<!--            margin-top: 20px;-->
+<!--            color: #ddd;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<nav class="navbar navbar-expand-lg navbar-dark">-->
+<!--    <a class="navbar-brand" href="#">My Book Recommender</a>-->
+<!--    <div class="navbar-collapse justify-content-center">-->
+<!--        <ul class="navbar-nav">-->
+<!--            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>-->
+<!--            <li class="nav-item"><a class="nav-link" href="/recommend">Recommend</a></li>-->
+<!--            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</nav>-->
+
+<!--<div class="container">-->
+<!--    <h1 class="display-4">Find Your Next Favorite Book</h1>-->
+<!--    <form action="/recommend_books" method="post">-->
+<!--        <div class="form-group">-->
+<!--            <input type="text" class="form-control" name="user_input" placeholder="Enter approximate book title" required>-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-success btn-lg btn-block">Get Recommendations</button>-->
+<!--    </form>-->
+
+<!--    &lt;!&ndash; Back to Home Button &ndash;&gt;-->
+<!--    <a href="/" class="btn btn-home btn-lg">Back to Home</a>-->
+
+<!--    <div class="row mt-5">-->
+<!--        {% if message %}-->
+<!--        <div class="col-md-12 text-center">-->
+<!--            <p>{{ message }}</p>-->
+<!--        </div>-->
+<!--        {% endif %}-->
+
+<!--        {% for item in data %}-->
+<!--        <div class="col-md-3 mt-4">-->
+<!--            <div class="card">-->
+<!--                <img class="card-img-top" src="{{ item[2] }}" alt="Book Cover">-->
+<!--                <div class="card-body">-->
+<!--                    <h5 class="card-title">{{ item[0] }}</h5>-->
+<!--                    <p class="card-text">Author: {{ item[1] }}</p>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommend Books</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1512820790803-83ca734da794'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            min-height: 100vh; /* Ensure the body takes full height */
+        }
+
+        .navbar {
+            background-color: #000000;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-nav {
+            margin: 0 auto;
+        }
+
+        .navbar-nav .nav-item {
+            padding: 0 15px;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.2rem;
+            color: white !important;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #FFD700 !important; /* Gold color on hover */
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better text visibility */
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .form-control {
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+        }
+
+        .btn-success {
+            border-radius: 5px;
+        }
+
+        .btn-home {
+            margin-top: 20px;
+            width: 100%; /* Full-width button */
+            background-color: #007bff; /* Bootstrap primary color */
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.8);
+            border: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-img-top {
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover .card-img-top {
+            opacity: 0.9;
+        }
+
+        .card-body {
+            text-align: center;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#">My Book Recommender</a>
+    <div class="navbar-collapse justify-content-center">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="/recommend">Recommend</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 class="display-4">Recommendations for: <em>{{ search_book }}</em></h1>
+
+    <form action="/recommend_books" method="post">
+        <div class="form-group">
+            <input type="text" class="form-control" name="user_input" placeholder="Enter approximate book title" required>
+        </div>
+        <button type="submit" class="btn btn-success btn-lg btn-block">Get Recommendations</button>
+    </form>
+
+    <a href="/" class="btn btn-home btn-lg">Back to Home</a>
+
+    <div class="row mt-5">
+        {% if message %}
+        <div class="col-md-12 text-center">
+            <p>{{ message }}</p>
+        </div>
+        {% endif %}
+
+        {% for item in data %}
+        <div class="col-md-3 mt-4">
+            <div class="card">
+                <img class="card-img-top" src="{{ item[2] }}" alt="Book Cover">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item[0] }}</h5>
+                    <p class="card-text">Author: {{ item[1] }}</p>
+                    <p class="card-text">Rating: {{ item[3] }}</p> <!-- Display the rating -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<footer>
+    <p>© 2024 Book Recommender System</p>
+</footer>
+
+</body>
+</html>
+
