@@ -26,7 +26,7 @@ A web-based **Book Recommendation System** built using **Flask**. This system us
     ```
 3. Run the Flask app:
     ```bash
-    python app.py
+    python app1.py
     ```
 
 ## Usage
